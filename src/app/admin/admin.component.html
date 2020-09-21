@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="">Khetu</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <button class="btn btn-default" (click)="getVegetable()">Vegetable</button>
+        </li>
+        <li class="nav-item active">
+            <button class="btn btn-default" (click)="getFruits()">Fruits</button>
+        </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+        <div>
+            <button *ngIf="!showLogin" class="btn btn-default" (click)="openFormModal()">Login</button>
+        </div>
+        <div class="mt-3 " style="margin-right:3px">
+            <p style="float:right" class="badge badge-primary">0</p>
+            <span style="float:left" class="material-icons">shopping_cart</span>
+        </div>
+        <div>
+            <a class=" mr-sm-2 " (click)="logout()">Logout</a>
+        </div>
+
+
+
+    </div>
+</nav>
+<div class="p-3 m-3">
+    <hr>
+
+    <div class="row">
+
+        <div class="col-lg-2 border border-top-0 border-left-0">
+
+        </div>
+        <div class="col-lg-10">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+            </div>
+
+            <div class="row mx-auto">
+                <div class=" mx-auto m-1" *ngFor="let d of productsArray | filter:term">
+                    <app-card-product [products]="d"></app-card-product>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

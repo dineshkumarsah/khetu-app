@@ -1,0 +1,11 @@
+<div class="container">
+    <h6 style="color:green">List of Products</h6>
+    <hr>
+
+    <div *ngFor="let data of products.items">
+       <p>Id: {{data.id}}</p>
+       <p>Name: {{data.name}}</p>
+       <p>Price:{{data.price}}</p>
+    <hr>
+    </div>
+</div>

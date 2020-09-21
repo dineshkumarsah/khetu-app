@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="../assets/vendor/animate-css/vivify.min.css">
+
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="../assets/css/site.min.css">
+
+<div class="auth-main2 particles_js">
+    <div class="auth_div vivify fadeInTop">
+        <div class="card">
+            <div class="body">
+                <div class="login-img">
+                    <img class="img-fluid" src="../assets/images/login-img.png" />
+                </div>
+                <form [formGroup]="authForm" class="form-auth-small" (ngSubmit)="getCredential()">
+                    <div class="mb-3">
+                        <p class="lead">Login to your account</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-email" class="control-label sr-only">Email</label>
+                        <p [ngClass]="{ 'has-error':  !formControls.email.touched }">
+                            <input type="email" class="form-control round" id="signin-email" formControlName="email"
+                                placeholder="Email">
+                        </p>
+                        <div *ngIf="!formControls.email.touched" class="help-block">
+                            <div *ngIf="!formControls.email.touched">Email is required</div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password" class="control-label sr-only">Password</label>
+                        <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+                            <input type="password" class="form-control round" id="signin-password "
+                                formControlName="password" placeholder="Password">
+                        </p>
+                        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                            <div *ngIf="formControls.password.errors.required">Password is required</div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="form-group clearfix">
+
+                        <input type="checkbox" class="form-check-input">
+                        <span>Remember me</span>
+
+                    </div> -->
+                  
+                    <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary btn-round btn-block">LOGIN</button>
+                    <!-- <div class="mt-4">
+                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a
+                                href="page-forgot-password.html">Forgot password?</a></span>
+                        <span>Don't have an account? <a href="page-register.html">Register</a></span>
+                    </div> -->
+                </form>
+                <div *ngIf="loginErrorMessage">
+                    <p [ngClass]="{ 'error-message': loginErrorMessage  }">{{loginErrorMessage}}</p>
+                </div>
+                <p>{{credential}}</p>
+                <div class="pattern">
+                    <span class="red"></span>
+                    <span class="indigo"></span>
+                    <span class="blue"></span>
+                    <span class="green"></span>
+                    <span class="orange"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="particles-js"></div>
+</div>

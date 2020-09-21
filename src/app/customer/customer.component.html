@@ -1,0 +1,76 @@
+<div class="container" style="margin-top: 50px;">
+    <button class ="btn btn-primary" (click)="openToastr()">stetst</button>
+   
+    <form class="form-signin" [formGroup]="cutomerForm" (ngSubmit)="getCustomerData()">
+        <!-- <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+        <h1 class="h3 mb-3 font-weight-normal">Add Customer Form</h1>
+        <div formGroupName="customer">
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" class=" mb-2 form-control" placeholder="Email address"
+                formControlName="email" required autofocus>
+            <label for="firstname" class=" mb-2 sr-only">First Name</label>
+            <input type="text" id="firstname" class=" mb-2 form-control" placeholder="Enter your first name"
+                formControlName="firstname" required autofocus>
+            <label for="lastname" class=" mb-2 sr-only">Last Name</label>
+            <input type="text" id="lastname" class=" mb-2 form-control" placeholder="Enter your last name"
+                formControlName="lastname" required autofocus>
+            <h6>Address:</h6>
+        </div>
+        <div formGroupName="addresses">
+            <div class="checkbox">
+                <label><input type="checkbox" value="" formControlName="defaultShipping">Default Shipping</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="" formControlName="defaultBilling">Default Billing </label>
+            </div>
+
+            <label for="firstname" class=" mb-2 sr-only">First Name</label>
+            <input type="text" id="firstname" class=" mb-2 form-control" placeholder="Enter your first name"
+                formControlName="firstname" required autofocus>
+            <label for="lastname" class=" mb-2 sr-only">Last Name</label>
+            <input type="text" id="lastname" class=" mb-2 form-control" placeholder="Enter your last name"
+                formControlName="lastname" required autofocus>
+
+            <h6>Region:</h6>
+            <div formGroupName="region">
+
+                <label for="regionCode" class=" mb-2 sr-only">Region Code</label>
+                <input type="text" id="regionCode" class=" mb-2 form-control" placeholder="Enter your Region Codee"
+                    formControlName="regionCode" required autofocus>
+                <label for="region" class=" mb-2 sr-only">Region</label>
+                <input type="text" id="region" class=" mb-2 form-control" placeholder="Enter your  Region"
+                    formControlName="region" required autofocus>
+                <label for="regionId" class=" mb-2 sr-only">regionId</label>
+                <input type="text" id="regionId" class=" mb-2 form-control" placeholder="Enter your regionId"
+                    formControlName="regionId" required autofocus>
+
+            </div>
+
+            <label for="postcode" class=" mb-2 sr-only">postcode</label>
+            <input type="text" id="postcode" class=" mb-2 form-control" placeholder="Enter postcode"
+                formControlName="postcode" required autofocus>
+            <label for="street" class=" mb-2 sr-only">street</label>
+            <input type="text" id="street" class=" mb-2 form-control" placeholder="Enter street"
+                formControlName="street" required autofocus>
+
+            <label for="city" class=" mb-2 sr-only">city</label>
+            <input type="text" id="city" class=" mb-2 form-control" placeholder="Enter city" formControlName="city"
+                required autofocus>
+            <label for="telephone" class=" mb-2 sr-only">city</label>
+            <input type="text" id="telephone" class=" mb-2 form-control" placeholder="Enter telephone"
+                formControlName="telephone" required autofocus>
+            <label for="countryId" class=" mb-2 sr-only">city</label>
+            <input type="text" id="countryId" class=" mb-2 form-control" placeholder="Enter countryId"
+                formControlName="countryId" required autofocus>
+
+        </div>
+
+
+        
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+    </form>
+   
+</div>

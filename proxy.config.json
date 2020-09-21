@@ -1,0 +1,8 @@
+{
+    "/index.php/*": {
+      "target": "http://34.121.107.224:8080",
+      "secure": false,
+      "logLevel":"debug",
+      "changeOrigin":"true"
+    }
+  }
