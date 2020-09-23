@@ -1,0 +1,39 @@
+<div class="container">
+    <h3>cart ItemList</h3>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" *ngIf="spineer">
+            <span class="sr-only">Loading...</span>
+          </div>
+    </div>
+    
+    <table class="table table-striped  table-bordered mt-3" *ngIf="show" >
+       <thead class="thead-dark">
+        <th >Serial No</th>
+        <th>Product Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Quantity</th>
+         <th>total</th>
+       </thead>
+           
+       <tbody >
+        <tr *ngFor="let data of cartItems index as i">
+            <td>{{i+1}}</td>
+            <td>{{data.product.name}}</td>
+            <td>{{data.product.image}}</td>
+            <td>{{data.product.price}}</td>
+            <td><app-quantity [product]="data.product"></app-quantity></td>
+            <td>{{data.product.price*data.quantity}}</td>
+        </tr>
+       </tbody>
+       
+        <tfoot>
+            <tr>
+                <td colspan="5">total</td>
+                <td colspan="1">{{total}}</td>
+            </tr>
+        </tfoot>
+        
+    
+    </table>
+</div>

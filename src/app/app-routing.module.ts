@@ -6,15 +6,18 @@ import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { CustomerComponent } from './customer/customer.component';
 import { ProductbyidComponent } from './productbyid/productbyid.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
-  {path: "product" ,component: ProductbyidComponent, canActivate: [AuthGuard]  }
+  { path: 'admin', component: AdminComponent,  },
+  { path: 'customer', component: CustomerComponent, },
+  {path: "product" ,component: ProductbyidComponent, },
+  {path: "cart" ,component: CartComponent,  }
+
 ];
 
 @NgModule({

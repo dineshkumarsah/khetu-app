@@ -17,24 +17,38 @@ export class CardProductComponent implements OnInit {
   constructor(private authService: AuthService, private cartService: CartService) { }
 
   ngOnInit() {
+    
+    this.getCart();
+    this. getQuantity();
+    console.log(this.product);
+    
   //  this.token=this.authService.getCustomerLoginToken()
   //this.cartService.cart;
   }
-  addToCart(id: string){
-  
-    this.quantity++
-   this.cartService.addToCart(id,this.quantity)
-  
-   
+  addToCart(){
+    // this.quantity++
+    // this.cartService.addToCart(id,this.quantity)
+    console.log(this.product);
+    this.cartService.addToCart(this.product)
+  }
+
+  getCart(){
+    console.log(this.cartService.getFromCart());
+    
+    
   }
 
   
-  removeQuantity(){
-    alert('remove')
-  }
-  ad(){
-    console.log("qqwww");
+  
+
+  getQuantity(){
     
+    this.cartService.getCartObservable.subscribe({
+      next: (res)=>{
+       this.quantity= this.cartService.getQuantity(this.product)
+        
+      }
+    })
   }
 
 }

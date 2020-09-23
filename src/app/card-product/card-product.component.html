@@ -4,16 +4,12 @@
     <h6 class="card-title">{{product.name}}</h6>
     <p class="card-text">{{product.price}}</p>
     <div class="card-footer">
-      <div *ngIf="true else addQuantity">
-        <a  class="btn btn-block btn-primary " (click)="addToCart(product.id)">Add</a>
+      <div *ngIf="!quantity else addQuantity" class="no-gutter">
+        <a  class="btn btn-block btn btn-light " (click)="addToCart()">Add</a>
       </div>
       <ng-template #addQuantity>
-        <div class="mx-auto">
-         
-          <button class="msgBtnBack btn mx-auto btn-light" (click)="ad()">+</button>
-          <button type="submit" class="msgBtn2 btn btn-primary mx-auto" onClick="return false;">1 in cart</button>
-          <button class="msgBtnBack btn mx-auto btn-light" (click)="removeQuantity()">-</button>
-      </div>
+        <app-quantity [product]="product"></app-quantity>
+     
       </ng-template>
     </div>
   

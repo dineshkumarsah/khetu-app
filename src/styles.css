@@ -4,6 +4,8 @@
 @import '~ngx-toastr/toastr.css';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+
+
 body {
     background: #ffffff;
     font-family: 'Open Sans', sans-serif;

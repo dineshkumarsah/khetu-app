@@ -17,6 +17,7 @@ import { ProductbyidComponent } from './productbyid/productbyid.component'
 import { CustomerloginComponent } from './customerlogin/customerlogin.component';
 import { CardProductComponent } from './card-product/card-product.component';
 import { HeaderComponent } from './header/header.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 import {
@@ -30,6 +31,8 @@ import {
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import { CartComponent } from './cart/cart.component';
+import { QuantityComponent } from './quantity/quantity.component';
 
 
 
@@ -46,9 +49,12 @@ import {MatButtonModule} from '@angular/material/button';
     CustomerloginComponent,
     CardProductComponent,
     HeaderComponent,
+    CartComponent,
+    QuantityComponent,
   ],
   imports: [
     BrowserModule,
+    NgxDatatableModule,
    
   
     AppRoutingModule,
