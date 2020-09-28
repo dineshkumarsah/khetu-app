@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import {CustomerService} from '../services/customer.service'
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,10 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   credential: User;
   loginErrorMessage:string
+  ErrorMessage: any;
   get formControls() { return this.authForm.controls; }
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder,
+    private cusService: CustomerService) { }
 
   ngOnInit() {
 
@@ -44,19 +47,19 @@ export class LoginComponent implements OnInit {
   getCredential() {
 
     let credential = {
-      "username": this.authForm.controls.email.value,
-      "password": this.authForm.controls.password.value
+      "username": "dinesh",
+      "password": "Dsah@1234"
     }
     this.authService.getCredential(credential).subscribe({
       next: (credential) => {
         this.credential = credential;
         this.authService.signIn(credential)
-        if (this.credential) {
-          this.router.navigate(['/admin']);
-        }
-        else {
-          this.router.navigate(['/login']);
-        }
+        // if (this.credential) {
+        //   this.router.navigate(['/admin']);
+        // }
+        // else {
+        //   this.router.navigate(['/login']);
+        // }
 
       }
       ,
@@ -70,5 +73,31 @@ export class LoginComponent implements OnInit {
     console.log(this.authForm);
   }
 
+  login(){
+    debugger;
+    let credential = {
+      "username": this.authForm.controls.email.value,
+      "password": this.authForm.controls.password.value
+    }
+
+    this.cusService.getCustomerToken(credential).subscribe({
+     next: (res)=>{
+      if(res){
+        console.log(res);
+        
+        this.router.navigate(['admin'])
+      }
+       
+     },
+     error: (error)=>{
+      this.ErrorMessage=error.error.message;
+     }
+      
+    })
+
+ 
+
+  console.log(this.authForm)
+  }
 
 } 

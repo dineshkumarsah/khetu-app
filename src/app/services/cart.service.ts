@@ -1,26 +1,35 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import {Cart} from 'src/app/model/cart.model'
+import {Cart} from 'src/app/model/cart.model';
+import {HttpClient} from '@angular/common/http'
+
 
 import {ProductbyidService} from 'src/app/services/productbyid.service'
 import { Product } from '../model/product';
+import {CustomerService} from 'src/app/services/customer.service';
+
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  cart={}
+  carUrl="/index.php/rest/default/V1/carts/mine"
   private _obeservable: BehaviorSubject<Object>
-   cart={}
+ 
 
-  constructor(productService: ProductbyidService) {
-    if(!this.isCartExist){
+  constructor(productService: ProductbyidService, private customerService: CustomerService,
+    private http: HttpClient, ) {
+    debugger
+    if(!this.isCartExist()  ){
       localStorage.setItem('cart',JSON.stringify(this.cart))
     }
     this. readDataFromCart()
     this._obeservable = new BehaviorSubject(this.cart)
    
-   }
+   } 
 
    readDataFromCart(){
      this.cart=JSON.parse(localStorage.getItem('cart'))   
@@ -79,11 +88,28 @@ export class CartService {
     if(quantity<1){
       delete this.cart[Product.id];}
       else{
+        // if(Product.id!=undefined)
         this.cart[Product.id]=quantity
       }
       this.writeDataToLocalStorage();
       this._obeservable.next(this.cart)
     }
+    // create Cart on magento 
+    
+  // getProductByIdSchema(id: string){
+  //   return this.http.get<ProductSechema>(this.url.getProductByid(id),{
+  //     headers:{
+  //       'authorization': this.authService.getToken()
+  //     }
+  //   })
+  // }
+     magentoCartCreate(){
+      return this.http.post(this.carUrl,{
+        headers:{
+                'authorization': this.customerService.CustomerTokens()
+              }
+      })
+     }
 
 
 

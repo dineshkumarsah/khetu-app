@@ -44,6 +44,7 @@ export class CustomerloginComponent implements OnInit , OnDestroy {
   }
 
   getCutomerToken() {
+    debugger
 
     let credential = {
       "username": this.myForm.value.username,
@@ -54,24 +55,26 @@ export class CustomerloginComponent implements OnInit , OnDestroy {
       next: (result) => {
         this.customerloginToken = result
         console.log(this.customerloginToken);
-        this.authService.setCustomerLoginToken(this.customerloginToken);
+       
         this.activeModal.close('Modal Closed');
-        // this.router.navigate(['abmin'])
-        //this.redirectTo('admin');
-        const factory = this.componentFactoryResolver.resolveComponentFactory(AdminComponent);
-    const ref = this.entry.createComponent(factory);
-    // ref.changeDetectorRef.detectChanges();
+      
     this.productbyidService.getProductByid("4").subscribe(
       (result)=>{
         console.log(result);
         
       }
     )
-    ref.instance.ngOnInit();
+ 
 
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
+      }
+    })
+    this.customerService.loginObservable.subscribe({
+      next:(r)=>{
+       
+        
       }
     })
     

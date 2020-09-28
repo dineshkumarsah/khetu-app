@@ -4,6 +4,7 @@ import { Cutomer } from '../model/customer.model';
 import {CustomerService} from '../services/customer.service'
 import { HttpErrorResponse } from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -13,17 +14,19 @@ import {ToastrService} from 'ngx-toastr'
 export class CustomerComponent implements OnInit {
 
   cutomerForm: FormGroup;
-  loginErrorMessage:string;
+  ErrorMessage:string;
   ht:boolean=false;
 
-  constructor(private fb: FormBuilder,private customerServices: CustomerService,private toastrService: ToastrService) { }
+  constructor(private fb: FormBuilder,private customerServices: CustomerService,private toastrService: ToastrService,
+    private router:Router ) { }
 
   ngOnInit() {
     this.cutomerForm = this.fb.group({
       "customer": this.fb.group({
         "email": [''],
         "firstname": [''],
-        "lastname": ['']
+        "lastname": [''],
+        "password":['']
       }),
       "addresses": this.fb.group({
         'defaultShipping': [''],
@@ -46,12 +49,14 @@ export class CustomerComponent implements OnInit {
   }
 
   getCustomerData() {
+  debugger;
    
     let customer = {
       "customer": {
         "email": this.cutomerForm.controls.customer.value.email,
         "firstname": this.cutomerForm.controls.customer.value.firstname,
         "lastname": this.cutomerForm.controls.customer.value.lastname,
+        "password": this.cutomerForm.controls.customer.value.password
       },
       "addresses": [
         {
@@ -73,27 +78,56 @@ export class CustomerComponent implements OnInit {
       ]
     }
 
+    let cu2={
+      "customer":{
+        "email": this.cutomerForm.controls.customer.value.email,
+        "firstname": this.cutomerForm.controls.customer.value.firstname,
+        "lastname": this.cutomerForm.controls.customer.value.lastname,
+          "websiteId":"1",
+          "addresses":[
+              {
+                  "customer_id":"1",
+                  "firstname": this.cutomerForm.controls.addresses.value.firstname,
+                  "lastname": this.cutomerForm.controls.addresses.value.lastname,
+                  "company":"ABC Manufacturing",
+                  "city":this.cutomerForm.controls.addresses.value.city,
+                   "telephone": this.cutomerForm.controls.addresses.value.telephone,
+                  "region":"Massachusetts",
+                  "postcode":this.cutomerForm.controls.addresses.value.postcode,
+                 
+                  "country_id":this.cutomerForm.controls.addresses.value.countryId,
+                  "street":[
+                    this.cutomerForm.controls.addresses.value.street
+                  ]
+              }
+          ]
+      },
+       "password": this.cutomerForm.controls.customer.value.password
+      }
+      
+    
+
 
     console.log(customer);
 
-    this.customerServices.cutomerRestration(customer).subscribe({
-      next: (result)=>{
-        this.toastrService.success("sssss");
-      
-        
+    this.customerServices.cutomerRestration(cu2).subscribe({
+      next: (result:{id:string})=>{
+        console.log(result.id);
+        if(result.id){
+          this.router.navigate(['admin'])
+        } 
       },
+      
       error: (error:HttpErrorResponse)=>{
-        this.ht=true;
-        this.loginErrorMessage=error.error.message;
-        this.toastrService.error('everything is broken', 'Major Error', {
-          timeOut: 3000
-        });
+        
+        this.ErrorMessage=error.error.message;
+        
         
       }
     })
   }
-  openToastr(){
-    this.toastrService.success('everything is broken', 'Major Error');
-  }
+  // openToastr(){
+  //   this.toastrService.success('everything is broken', 'Major Error');
+  // }
 
 }

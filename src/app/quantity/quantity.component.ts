@@ -31,6 +31,7 @@ export class QuantityComponent implements OnInit {
     this.cartService.setquantity(this.product,this.quantity)
   }
   increaseQuantity(){
+    
     debugger;
     this.quantity++
     this.cartService.setquantity(this.product,this.quantity)

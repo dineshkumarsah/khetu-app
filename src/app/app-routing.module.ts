@@ -10,7 +10,7 @@ import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login'},
+  { path: '', pathMatch: 'full', redirectTo: 'admin'},
   { path: 'login', component: LoginComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'admin', component: AdminComponent,  },

@@ -18,6 +18,7 @@ export class AuthService {
     // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
     return this.http.post<User>(this.postsURL,credetial).pipe(
       map((result)=>{
+        this.signIn(result)
         return <User>result
       })
     )
@@ -42,8 +43,8 @@ export class AuthService {
   }
 
   public logout(){
-    localStorage.removeItem('customerToken')
-    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('token')
+    // localStorage.removeItem('ACCESS_TOKEN');
   }
   getToken(){
     return localStorage.getItem('ACCESS_TOKEN')

@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
   }
 
   cartSubcriber() {
+    debugger;
    
     
     this.cartService.getCartObservable.subscribe({
@@ -45,7 +46,7 @@ export class CartComponent implements OnInit {
           cartObservable.push(this.productByidService.getProductByIdSchema(id).pipe(
             map((product) => {
               
-            this.total= this.total+ (product.items[0].price*cart[id])
+            this.total= this.total+ (cart[id])
             let cartProduct: Product={
               name: product.items[0].name,
               price:String(product.items[0].price),
@@ -60,28 +61,19 @@ export class CartComponent implements OnInit {
             })
           )
           )
-          forkJoin(cartObservable).subscribe({
-            next: (res: cartItems[]) => {
-              this.cartItems = res
-              console.log(this.cartItems);
-              // this.calculateTotal(this.cartItems)
-
-          setTimeout(() => {
-            this.spineer=false
-            this.show=true
-
-            // let product={
-            //   id: ,
-            //   image: this.cartItems[0].product.items[0].media_gallery_entries[0].file,
-            //   name:this.cartItems[0].product.items[0].name
-            //   price: 120
-            // }
-            
-          }, 5000);              
-
-            }
-          })
+          
         }
+
+        forkJoin(cartObservable).subscribe({
+          next: (res: cartItems[]) => {
+            this.cartItems = res
+            console.log(this.cartItems);
+            // this.calculateTotal(this.cartItems)
+
+                  
+
+          }
+        })
        
 
       },

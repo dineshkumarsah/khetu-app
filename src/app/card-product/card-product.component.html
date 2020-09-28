@@ -6,6 +6,10 @@
     <div class="card-footer">
       <div *ngIf="!quantity else addQuantity" class="no-gutter">
         <a  class="btn btn-block btn btn-light " (click)="addToCart()">Add</a>
+        <!-- <select #minPrice name="min" class="form-control mb-2" id="" (change)="addToCart(minPrice.value)">
+          <option value="100">Choose an options</option>
+          <option *ngFor="let m of options" value="{{m}}">{{m}}</option>
+      </select> -->
       </div>
       <ng-template #addQuantity>
         <app-quantity [product]="product"></app-quantity>

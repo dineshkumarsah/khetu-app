@@ -1,9 +1,9 @@
 <div class="container" style="margin-top: 50px;">
-    <button class ="btn btn-primary" (click)="openToastr()">stetst</button>
-   
     <form class="form-signin" [formGroup]="cutomerForm" (ngSubmit)="getCustomerData()">
-        <!-- <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
-        <h1 class="h3 mb-3 font-weight-normal">Add Customer Form</h1>
+        <p *ngIf="ErrorMessage" class="alert alert-danger">{{ErrorMessage}}</p>
+        <!-- <p *ngIf="success" class="alert alert-success">{{success}}</p> -->
+
+        <h6 class="h3 mb-3 font-weight-normal">Registration Form</h6>
         <div formGroupName="customer">
             <label for="inputEmail" class="sr-only">Email</label>
             <input type="email" id="inputEmail" class=" mb-2 form-control" placeholder="Email address"
@@ -14,6 +14,9 @@
             <label for="lastname" class=" mb-2 sr-only">Last Name</label>
             <input type="text" id="lastname" class=" mb-2 form-control" placeholder="Enter your last name"
                 formControlName="lastname" required autofocus>
+            <label for="lastname" class=" mb-2 sr-only">Password</label>
+            <input type="password" id="password" class=" mb-2 form-control" placeholder="Enter your password"
+                formControlName="password" required autofocus>
             <h6>Address:</h6>
         </div>
         <div formGroupName="addresses">
@@ -66,11 +69,11 @@
         </div>
 
 
-        
+
 
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
     </form>
-   
+
 </div>

@@ -4,7 +4,7 @@
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="../assets/css/site.min.css">
-
+<app-header></app-header>
 <div class="auth-main2 particles_js">
     <div class="auth_div vivify fadeInTop">
         <div class="card">
@@ -12,7 +12,8 @@
                 <div class="login-img">
                     <img class="img-fluid" src="../assets/images/login-img.png" />
                 </div>
-                <form [formGroup]="authForm" class="form-auth-small" (ngSubmit)="getCredential()">
+               
+                <form [formGroup]="authForm" class="form-auth-small" (ngSubmit)="login()">
                     <div class="mb-3">
                         <p class="lead">Login to your account</p>
                     </div>
@@ -44,16 +45,17 @@
                         <span>Remember me</span>
 
                     </div> -->
-                  
-                    <button [disabled]="!authForm.valid" type="submit" class="btn btn-primary btn-round btn-block">LOGIN</button>
+
+                    <button [disabled]="!authForm.valid" type="submit"
+                        class="btn btn-primary btn-round btn-block">LOGIN</button>
                     <!-- <div class="mt-4">
                         <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a
                                 href="page-forgot-password.html">Forgot password?</a></span>
                         <span>Don't have an account? <a href="page-register.html">Register</a></span>
                     </div> -->
                 </form>
-                <div *ngIf="loginErrorMessage">
-                    <p [ngClass]="{ 'error-message': loginErrorMessage  }">{{loginErrorMessage}}</p>
+                <div *ngIf="ErrorMessage">
+                    <p *ngIf="ErrorMessage" class="alert alert-danger">{{ErrorMessage}}</p>
                 </div>
                 <p>{{credential}}</p>
                 <div class="pattern">

@@ -18,7 +18,6 @@ export class ProductbyidService {
 
   getProductByid(url: string) {
     this.productArray = []
-    if (this.getCustomerToken()) {
       return this.http.get(url, {
         headers: {
           'authorization': this.authService.getToken()
@@ -49,7 +48,7 @@ export class ProductbyidService {
 
         })
       )
-    }
+    
 
   }
 
