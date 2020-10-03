@@ -67,7 +67,7 @@ export class CartComponent implements OnInit {
         forkJoin(cartObservable).subscribe({
           next: (res: cartItems[]) => {
             this.cartItems = res
-            console.log(this.cartItems);
+         
             // this.calculateTotal(this.cartItems)
 
                   

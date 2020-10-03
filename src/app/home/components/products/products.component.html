@@ -1,0 +1,12 @@
+
+<div class="row mx-auto">
+    <div *ngFor="let data of products; let i = index">
+        <div *ngFor="let d of data; let i1 = index">
+            <app-card [product]="d"></app-card>
+            
+        </div>
+     
+    </div>
+
+</div>
+

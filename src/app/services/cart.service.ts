@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import {Cart} from 'src/app/model/cart.model';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient,HttpHeaders} from '@angular/common/http'
 
 
 import {ProductbyidService} from 'src/app/services/productbyid.service'
 import { Product } from '../model/product';
 import {CustomerService} from 'src/app/services/customer.service';
+import {AuthService} from '../auth.service'
 
 
 
@@ -17,11 +18,12 @@ import {CustomerService} from 'src/app/services/customer.service';
 export class CartService {
   cart={}
   carUrl="/index.php/rest/default/V1/carts/mine"
+  carItem="/index.php/rest/default/V1/carts/mine/items"
   private _obeservable: BehaviorSubject<Object>
  
 
   constructor(productService: ProductbyidService, private customerService: CustomerService,
-    private http: HttpClient, ) {
+    private http: HttpClient,private authService: AuthService ) {
     debugger
     if(!this.isCartExist()  ){
       localStorage.setItem('cart',JSON.stringify(this.cart))
@@ -68,9 +70,17 @@ export class CartService {
 
     localStorage.setItem("cart",JSON.stringify(this.cart))
     // this._obeservable= new BehaviorSubject(this.cart);
-    this._obeservable.next(this.cart)
+    this._obeservable.next(this.cart);
   
    
+  }
+  magentoAddTocart(cartItem: CartItems){
+    const httphead =new HttpHeaders({
+      'content-type':'application/json',
+      'authorization':this.customerService.CustomerTokens()
+    });
+
+   return this.http.post(this.carItem,cartItem,{headers:httphead})
   }
    getFromCart(){
      return localStorage.getItem('cart');
@@ -104,11 +114,13 @@ export class CartService {
   //   })
   // }
      magentoCartCreate(){
-      return this.http.post(this.carUrl,{
-        headers:{
-                'authorization': this.customerService.CustomerTokens()
-              }
-      })
+      
+       const httphead =new HttpHeaders({
+         'content-type':'application/json',
+         'authorization':this.customerService.CustomerTokens()
+       });
+       
+      return this.http.get(this.carUrl,{headers:httphead})
      }
 
 

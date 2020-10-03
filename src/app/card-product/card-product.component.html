@@ -4,17 +4,18 @@
     <h6 class="card-title">{{product.name}}</h6>
     <p class="card-text">{{product.price}}</p>
     <div class="card-footer">
-      <div *ngIf="!quantity else addQuantity" class="no-gutter">
-        <a  class="btn btn-block btn btn-light " (click)="addToCart()">Add</a>
-        <!-- <select #minPrice name="min" class="form-control mb-2" id="" (change)="addToCart(minPrice.value)">
+      <div  class="no-gutter">
+     
+        <select [(ngModel)]='nrSelect' name="min" class="form-control mb-2" id="" (change)="addToCart(minPrice.value)">
           <option value="100">Choose an options</option>
           <option *ngFor="let m of options" value="{{m}}">{{m}}</option>
-      </select> -->
+      </select>
+         <a  class="btn btn-block btn btn-light " (click)="addToCart()">Add To cart</a>
       </div>
-      <ng-template #addQuantity>
+      <!-- <ng-template #addQuantity>
         <app-quantity [product]="product"></app-quantity>
      
-      </ng-template>
+      </ng-template> -->
     </div>
   
 

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   this.customerSubscription = this.customerService.loginObservable.subscribe({
     next: (result)=>{
-      console.log(result);
+   
       
     }
   })

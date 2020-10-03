@@ -54,13 +54,13 @@ export class CustomerloginComponent implements OnInit , OnDestroy {
     this.customerService.getCustomerToken(credential).subscribe({
       next: (result) => {
         this.customerloginToken = result
-        console.log(this.customerloginToken);
+     
        
         this.activeModal.close('Modal Closed');
       
     this.productbyidService.getProductByid("4").subscribe(
       (result)=>{
-        console.log(result);
+     
         
       }
     )
@@ -68,7 +68,7 @@ export class CustomerloginComponent implements OnInit , OnDestroy {
 
       },
       error: (error: HttpErrorResponse) => {
-        console.log(error);
+
       }
     })
     this.customerService.loginObservable.subscribe({

@@ -108,11 +108,11 @@ export class CustomerComponent implements OnInit {
     
 
 
-    console.log(customer);
+
 
     this.customerServices.cutomerRestration(cu2).subscribe({
       next: (result:{id:string})=>{
-        console.log(result.id);
+      
         if(result.id){
           this.router.navigate(['admin'])
         } 

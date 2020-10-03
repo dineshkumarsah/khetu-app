@@ -21,7 +21,7 @@ export class QuantityComponent implements OnInit {
         
       }
     })
-    console.log(this.product);
+  
     
   }
 

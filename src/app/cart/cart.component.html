@@ -12,8 +12,8 @@
         <th>Product Name</th>
         <th>Image</th>
         <!-- <th>Price</th> -->
-        <th>Quantity Standard</th>
-         <th>Extras</th> 
+        <!-- <th>Quantity Standard</th>
+         <th>Extras</th>  -->
        </thead>
            
        <tbody >
@@ -22,19 +22,13 @@
             <td>{{data.product.name}}</td>
             <td>{{data.product.image}}</td>
             <!-- <td>{{data.product.price}}</td> -->
-            <td><app-quantity [product]="data.product"></app-quantity></td>
-            <td></td>
+            <!-- <td><app-quantity [product]="data.product"></app-quantity></td>
+            <td></td> -->
         </tr>
        </tbody>
         
          <tfoot>
-            <tr>
-                <td colspan="2">Total</td>
-                <td colspan="1"></td>
-                <td >{{total}}</td>
-                <td ></td>
-                
-            </tr>
+        
         </tfoot>
         
     

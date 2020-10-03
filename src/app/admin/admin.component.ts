@@ -26,6 +26,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   showLogOut: string;
   itemOfNumber: number=0;
   islogin: boolean=false;
+  cart_Id: any;
 
   constructor(private router: Router, private authService: AuthService, private modalService: NgbModal, private product: ProductbyidService,
     private customerService: CustomerService,
@@ -33,6 +34,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     private url: UrlService) { }
 
   ngOnInit() {
+    this.createMagentoCart();
 
     this.getAuthToken()
     this.customerService.loginObservable.subscribe({
@@ -77,7 +79,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
       },
       error: (error) => {
-        console.log(error);
+      
 
       }
     }
@@ -95,25 +97,26 @@ export class AdminComponent implements OnInit, OnDestroy {
   openFormModal() {
     if (!localStorage.getItem('customerToken')) {
       const modalRef = this.modalService.open(CustomerloginComponent);
-      console.log("modalRef->", modalRef);
+ 
 
       modalRef.componentInstance.id = 10; // should be the id
-      console.log(modalRef);
+  
 
       modalRef.result.then((result) => {
-        console.log(result);
+    
       }).catch((error) => {
-        console.log("model error", error);
+  
       });
     }
 
   }
 
   getAllProducts(url: string) {
+    debugger;
    
     this.product.getProductByid(url).subscribe({
       next: (result) => {
-        console.log("----------------------->",result);
+      
 
         this.productsArray = result
       }
@@ -140,12 +143,12 @@ export class AdminComponent implements OnInit, OnDestroy {
     
     this.cartService.getCartObservable.subscribe({
       next: (res)=>{
-        console.log(res);
+    
         this.itemOfNumber=Object.keys(res).length
         
       },
       error: (error)=>{
-       console.log(error);
+     
        
       }
 
@@ -156,11 +159,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   //   debugger;
   //   this.product.getProductByIdSchema(id).subscribe({
   //     next : (res)=>{
-  //       console.log("get product by id--->:",res);
+  //  
         
   //     },
   //     error: (res: HttpErrorResponse)=>{
-  //       console.log("get product by id--->:",res);
+  //    
   //     }
   //   });
   // }
@@ -176,7 +179,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
     this.authService.getCredential(credential).subscribe({
       next: (res)=>{
-        console.log(res);
+      
         
       }
     })
@@ -185,7 +188,26 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.router.navigate(['login'])
   }
 
+  createMagentoCart(){
+    debugger
+    this.cartService.magentoCartCreate().subscribe({
+      next: (res:{id:string})=>{
+        this. cart_Id=res.id
+        console.log("dk",res.id);
+        console.log(res);
+        
+        
+      
+        
+      },
+      error: (error: HttpErrorResponse)=>{
+      
+         
+      }
+    });
+  }
+
   ngOnDestroy() {
-    localStorage.removeItem("cart")
+    // localStorage.removeItem("cart")
   }
 }

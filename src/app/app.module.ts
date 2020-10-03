@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
 import {ReactiveFormsModule} from '@angular/forms'
-import {LoginComponent} from './login/login.component';
+// import {LoginComponent} from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CustomerComponent } from './customer/customer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { CartComponent } from './cart/cart.component';
 import { QuantityComponent } from './quantity/quantity.component';
+import { MagentocartComponent } from './magentocart/magentocart.component';
 
 
 
@@ -43,7 +44,7 @@ import { QuantityComponent } from './quantity/quantity.component';
     AppComponent,
     AuthComponent,
     AdminComponent,
-    LoginComponent,
+  
     CustomerComponent,
     ProductbyidComponent,
     CustomerloginComponent,
@@ -51,6 +52,7 @@ import { QuantityComponent } from './quantity/quantity.component';
     HeaderComponent,
     CartComponent,
     QuantityComponent,
+    MagentocartComponent,
   ],
   imports: [
     BrowserModule,

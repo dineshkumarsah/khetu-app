@@ -23,6 +23,10 @@
         <div *ngIf="islogin">
             <a class=" mr-sm-2 " (click)="logout()">Logout</a>
         </div>
+        
+        <div >
+           <a routerLink="cart">Magentocart</a>
+        </div>
 
 
 
@@ -43,7 +47,7 @@
 
             <div class="row mx-auto">
                 <div class=" mx-auto m-1" *ngFor="let d of productsArray | filter:term">
-                    <app-card-product [products]="d"></app-card-product>
+                    <app-card-product [products]="d" [cart_Id]="cart_Id"></app-card-product>
                 </div>
             </div>
         </div>

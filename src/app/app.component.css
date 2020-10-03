@@ -1,0 +1,17 @@
+.sticky{
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+    width: 100%;
+    
+  }
+  
+  .content{
+   margin-top: 100px;
+   padding: 20px;
+    
+  }
+  h6{
+    text-align: center;
+  }

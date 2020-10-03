@@ -23,11 +23,11 @@ export class ProductbyidComponent implements OnInit {
     this.productById.getProductByid(url).subscribe({
       next: (result)=>{
         this.products=result
-        console.log("product--->",result);
+  
         
       },
       error: (error: HttpErrorResponse)=>{
-        console.log(error);
+   
         
       }
     })

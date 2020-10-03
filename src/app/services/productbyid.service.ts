@@ -21,12 +21,15 @@ export class ProductbyidService {
       return this.http.get(url, {
         headers: {
           'authorization': this.authService.getToken()
+
         }
       }).pipe(
         map((res) => {
           let substring
           let p = res['items']
-          console.log(res);
+          console.log( this.authService.getToken());
+          
+        
 
           let products: Product
           for (let i = 0; i < res['items'].length; i++) {
@@ -41,6 +44,8 @@ export class ProductbyidService {
               price: p[i].price,
               image: substring,  //p[i].media_gallery_entries.length>0 ? p[i].media_gallery_entries[0].file:"",
               id: p[i].id,
+              sku:p[i].sku
+
             }
             this.productArray.push(products)
           }
