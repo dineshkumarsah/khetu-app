@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
   }
 
   cartSubcriber() {
-    debugger;
+ 
    
     
     this.cartService.getCartObservable.subscribe({

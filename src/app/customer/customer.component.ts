@@ -49,7 +49,7 @@ export class CustomerComponent implements OnInit {
   }
 
   getCustomerData() {
-  debugger;
+
    
     let customer = {
       "customer": {

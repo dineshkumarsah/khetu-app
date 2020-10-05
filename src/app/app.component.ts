@@ -15,7 +15,7 @@ export class AppComponent {
   }
   @HostListener('window:scroll', ['$event'])
   handleScroll(){
-    debugger;
+    
     const windowScroll = window.pageYOffset;
     if(windowScroll >= this.elementPosition){
       this.sticky = true;

@@ -92,7 +92,7 @@ export class CardProductComponent implements OnInit {
   }
 
   MagentocreateCart(){
-    debugger;
+  
     this.cartService.magentoCartCreate().subscribe({
       next: (res)=>{
     

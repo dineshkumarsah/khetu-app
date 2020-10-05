@@ -112,7 +112,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   getAllProducts(url: string) {
-    debugger;
+    
    
     this.product.getProductByid(url).subscribe({
       next: (result) => {
@@ -156,7 +156,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   // getProductByid(id: string){
-  //   debugger;
+
   //   this.product.getProductByIdSchema(id).subscribe({
   //     next : (res)=>{
   //  

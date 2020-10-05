@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -7,7 +7,8 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   adminURL="/index.php/rest/V1/integration/admin/token";
-  customerURL="/index.php/rest/default/V1/integration/customer/token"
+  customerURL="/index.php/rest/default/V1/integration/customer/token";
+  cartUrl="/index.php/rest/default/V1/carts/mine"
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,19 @@ export class AuthService {
     )
   }
 
+  magentoCartCreate(){
+      
+    const httphead =new HttpHeaders({
+      'content-type':'application/json',
+      'authorization':this.customerToken()
+    });
+    let token=this.customerToken();
+    console.log(token);
+    
+   return this.http.post(this.cartUrl,httphead)
+  }
+
+
   public saveAdminToken(result:any){
     localStorage.setItem('ACCESS_TOKEN', "Bearer "+ result); 
   }
@@ -38,6 +52,9 @@ export class AuthService {
   }
   public adminToken(){
     return localStorage.getItem('ACCESS_TOKEN')
+  }
+  customerToken(){
+    return localStorage.getItem('CUSTOMER_TOKEN')
   }
 
 
